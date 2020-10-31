@@ -85,9 +85,13 @@ class _AddBaseCurrencyState extends State<AddBaseCurrency> {
                                   if (_selectedCurrency != null &&
                                       _selectedCurrency.isNotEmpty)
                                     provider.addBaseCurrency(_selectedCurrency);
-
-                                  Navigator.of(context)
-                                      .popAndPushNamed(AddCurrencyScreen.route);
+                                  if (provider.getCurrency.rates == null)
+                                    Navigator.of(context).popAndPushNamed(
+                                        AddCurrencyScreen.route);
+                                  else {
+                                    provider.getCurrencies();
+                                    Navigator.of(context).pop();
+                                  }
                                 })
                           ],
                         ),

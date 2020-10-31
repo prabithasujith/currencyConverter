@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 class CurrencyProvider with ChangeNotifier {
   CurrencyRepositiory currencyRepositiory;
-  String _base = '';
+  String base = '';
   List<String> userSelectedCurrenciesList = [];
   String user = '';
   CurrencyProvider(CurrencyRepositiory currencyRepositiory) {
@@ -26,7 +26,7 @@ class CurrencyProvider with ChangeNotifier {
   Future<void> init() async {
     userSelectedCurrenciesList =
         await currencyRepositiory.getSavedCurrenciesTOConvert();
-    _base = await currencyRepositiory.getSavedBaseCurrency();
+    base = await currencyRepositiory.getSavedBaseCurrency();
   }
 
   List<String> currenciesList = [
@@ -81,8 +81,8 @@ class CurrencyProvider with ChangeNotifier {
   Future<void> addBaseCurrency(String base) async {
     try {
       await currencyRepositiory.saveBaseCurrency(base);
-      this._base = base;
-      _currency.base = _base;
+      this.base = base;
+      _currency.base = base;
       notifyListeners();
     } catch (e) {
       throw UnimplementedError(e);

@@ -9,37 +9,53 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MultiProvider(providers: [
-    ChangeNotifierProvider.value(value: Auth()),
-    ChangeNotifierProxyProvider<Auth, CurrencyProvider>(create: (_) {
-      return CurrencyProvider(CurrencyRepositoryImpl());
-    }, update: (_, value, previous) {
-      previous.update(value.user);
-      return previous;
-    }),
-  ], child: MyApp()));
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+
+  
   // This widget is the root of your application.
   @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    
+  }
+  @override
   Widget build(BuildContext mContext) {
-    return Consumer<Auth>(builder: (ctx, auth, _) {
-      return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Currency Converter',
-        theme: ThemeData(
-          primaryColor: Color(0xff005C9A),
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
-        home: auth.isSignedIn ? LoginScreen() : AddBaseCurrency(),
-        routes: {
-          AddBaseCurrency.route: (ctx) => AddBaseCurrency(),
-          HomeScreen.route: (ctx) => HomeScreen(),
-          AddCurrencyScreen.route: (ctx) => AddCurrencyScreen(),
-          LoginScreen.route: (ctx) => LoginScreen()
-        },
-      );
-    });
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider.value(value: Auth()),
+          ChangeNotifierProxyProvider<Auth, CurrencyProvider>(create: (_) {
+            return CurrencyProvider(CurrencyRepositoryImpl());
+          }, update: (_, value, previous) {
+            previous.update(value.user);
+            return previous;
+          }),
+        ],
+        child: Consumer<Auth>(builder: (ctx, auth, _) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Currency Converter',
+            theme: ThemeData(
+              primaryColor: Color(0xff005C9A),
+              visualDensity: VisualDensity.adaptivePlatformDensity,
+            ),
+            home: LoginScreen(),
+            routes: {
+              AddBaseCurrency.route: (ctx) => AddBaseCurrency(),
+              HomeScreen.route: (ctx) => HomeScreen(),
+              AddCurrencyScreen.route: (ctx) => AddCurrencyScreen(),
+              LoginScreen.route: (ctx) => LoginScreen()
+            },
+          );
+        }));
   }
 }

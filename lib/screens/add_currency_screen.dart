@@ -119,7 +119,12 @@ class _AddCurrencyScreenState extends State<AddCurrencyScreen> {
                   ),
                 ),
                 onTap: () {
-                  Navigator.of(context).popAndPushNamed(HomeScreen.route);
+                  if (provider.getCurrency.rates == null)
+                    Navigator.of(context).popAndPushNamed(HomeScreen.route);
+                  else {
+                    provider.getCurrencies();
+                    Navigator.of(context).pop();
+                  }
                 },
               )
             ],

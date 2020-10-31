@@ -1,7 +1,6 @@
 import 'package:currencyConverter/providers/auth_provider.dart';
 import 'package:currencyConverter/screens/add_base_currency.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
