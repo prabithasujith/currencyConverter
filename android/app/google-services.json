@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "356859118536",
+    "firebase_url": "https://sivisoftcurrencyconverte-deac0.firebaseio.com",
+    "project_id": "sivisoftcurrencyconverte-deac0",
+    "storage_bucket": "sivisoftcurrencyconverte-deac0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:356859118536:android:75a6c2edd02464a26d36fd",
+        "android_client_info": {
+          "package_name": "com.example.currencyConverter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "356859118536-o2li9ftisq7vg1smbe6hqknu1kubullf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAEeWLyHKtelWUKvJJbdRYqViavxNrqKs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "356859118536-o2li9ftisq7vg1smbe6hqknu1kubullf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
