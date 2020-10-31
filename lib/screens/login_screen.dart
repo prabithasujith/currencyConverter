@@ -15,7 +15,6 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
-
   }
 
   @override
@@ -27,8 +26,10 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Center(
           child: MaterialButton(
             color: Colors.white,
-            onPressed: () {
-              auth.handleSignIn(context);
+            onPressed: () async {
+              await auth.handleSignIn(context);
+              if (auth.isSignedIn)
+                Navigator.of(context).popAndPushNamed(AddBaseCurrency.route);
             },
             child: Text('Google Sign In'),
           ),

@@ -1,3 +1,4 @@
+import 'package:currencyConverter/core/network_info.dart';
 import 'package:currencyConverter/models/CurrencyResponse.dart';
 import 'package:currencyConverter/repositories/currency_repository.dart';
 import 'package:flutter/cupertino.dart';
@@ -65,10 +66,13 @@ class CurrencyProvider with ChangeNotifier {
 
   Future<void> getCurrencies() async {
     try {
-      CurrencyResponse currencyResponse =
-          await currencyRepositiory.getCurrency();
-      _currency = currencyResponse;
-      notifyListeners();
+      NetworkInfo networkInfo = NetworkInfo();
+      if (await networkInfo.isNetworkConnected()) {
+        CurrencyResponse currencyResponse =
+            await currencyRepositiory.getCurrency();
+        _currency = currencyResponse;
+        notifyListeners();
+      } else {}
     } catch (e) {
       throw UnimplementedError(e);
     }
